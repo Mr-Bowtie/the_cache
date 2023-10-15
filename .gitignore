@@ -1,3 +1,7 @@
+# Editor garbage
 tags
+# dont share those secrets now
 .env
 .env.*
+# ignore locally generated files
+files
