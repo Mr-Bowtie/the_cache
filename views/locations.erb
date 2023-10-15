@@ -1,0 +1,12 @@
+<div class="level is-mobile">
+  <div class="level-item">
+    <h1 class="title is-1">Locations</h1>
+  </div>
+</div>
+
+<ul>
+  <% @locations.each do |log| %>
+    <li><a href="/locations/<%= log %>"><%= log %></a></li>
+  <% end %>
+</ul>
+

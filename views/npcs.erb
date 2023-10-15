@@ -1,0 +1,11 @@
+<div class="level is-mobile">
+  <div class="level-item">
+    <h1 class="title is-1">NPCs</h1>
+  </div>
+</div>
+
+<ul>
+  <% @npcs.each do |log| %>
+    <li><a href="/npcs/<%= log %>"><%= log %></a></li>
+  <% end %>
+</ul>

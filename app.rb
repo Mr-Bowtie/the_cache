@@ -14,6 +14,13 @@ get '/npcs' do
   erb :npcs
 end
 
+get '/npcs/:title' do
+  @content = File.read("./files/npcs/#{params[:title]}")
+  puts params[:title]
+  @title = params[:title]
+  erb :show_content
+end
+
 get '/adventure_logs' do
   @adventure_logs = Dir.entries('./files/adventure_logs').reject { |f| File.directory? f }
   erb :adventure_logs
@@ -29,6 +36,13 @@ end
 get '/locations' do
   @locations = Dir.entries('./files/locations').reject { |f| File.directory? f }
   erb :locations
+end
+
+get '/locations/:title' do
+  @content = File.read("./files/locations/#{params[:title]}")
+  puts params[:title]
+  @title = params[:title]
+  erb :show_content
 end
 
 get '/rich_text_form' do

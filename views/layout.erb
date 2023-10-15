@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The Cache</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <script src="https://cdn.tiny.cloud/1/<%= ENV['TINYMCE_API_KEY'] %>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-</head>
-<body>
-  <div class="tabs is-centered">
-    <ul>
-      <li class="is-active"><a href="/">Home</a></li>
-      <li><a href="/adventure_logs">Adventure Log</a></li>
-      <li><a href="/locations">Locations</a></li>
-      <li><a href="/npcs">NPCs</a></li>
-    </ul>
-  </div>
-  <div class="container">
-    <%= yield %>
-  </div>
-</body>
+  <head>
+    <title>The Cache</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    >
+    <script
+      src="https://cdn.tiny.cloud/1/<%= ENV['TINYMCE_API_KEY'] %>/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <h1 class="navbar-item title is-1">The Cache</h1>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a href="/rich_text_form" class="button" style="display: inline-block">New Record</a>
+        </div>
+      </div>
+    </nav>
+    <div class="tabs is-centered">
+      <ul>
+        <li class="is-active"><a href="/">Home</a></li>
+        <li><a href="/adventure_logs">Adventure Log</a></li>
+        <li><a href="/locations">Locations</a></li>
+        <li><a href="/npcs">NPCs</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
 </html>
- 
