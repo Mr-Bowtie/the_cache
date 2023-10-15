@@ -6,6 +6,6 @@
 
 <ul>
   <% @npcs.each do |log| %>
-    <li><a href="/npcs/<%= log %>"><%= log %></a></li>
+    <li><a href="/npcs/<%= log %>"><%= log.sub('.txt', '') %></a></li>
   <% end %>
 </ul>

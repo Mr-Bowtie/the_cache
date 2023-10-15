@@ -6,6 +6,6 @@
 
 <ul>
   <% @adventure_logs.each do |log| %>
-    <li><a href="/adventure_logs/<%= log %>"><%= log %></a></li>
+    <li><a href="/adventure_logs/<%= log %>"><%= log.sub('.txt', '') %></a></li>
   <% end %>
 </ul>
