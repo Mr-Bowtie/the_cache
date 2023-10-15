@@ -16,7 +16,6 @@ end
 
 get '/npcs/:title' do
   @content = File.read("./files/npcs/#{params[:title]}")
-  puts params[:title]
   @title = params[:title]
   erb :show_content
 end
@@ -28,7 +27,6 @@ end
 
 get '/adventure_logs/:title' do
   @content = File.read("./files/adventure_logs/#{params[:title]}")
-  puts params[:title]
   @title = params[:title]
   erb :show_content
 end
@@ -40,7 +38,6 @@ end
 
 get '/locations/:title' do
   @content = File.read("./files/locations/#{params[:title]}")
-  puts params[:title]
   @title = params[:title]
   erb :show_content
 end
