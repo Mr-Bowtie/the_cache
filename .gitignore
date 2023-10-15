@@ -4,4 +4,4 @@ tags
 .env
 .env.*
 # ignore locally generated files
-files
+records
