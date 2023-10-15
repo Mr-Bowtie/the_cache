@@ -14,6 +14,7 @@
   - connect on `localhost:9090`
   - can run locally without docker by running: `bundle exec rackup`
     - will require setting up ruby and running `bundle install` from project root
+  - *NOTE* this app uses no database, rather just reads and writes text files to the server disk
 
 ## Roadmap
   - image uploads
