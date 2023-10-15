@@ -18,4 +18,4 @@ primary_region = "ewr"
 
 [mounts]
   source="records"
-  destination="/records"
+  destination="/sinatra/records"
