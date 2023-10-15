@@ -22,3 +22,4 @@
   - cooler design
   - form validations
   - GHA CI auto-deploy pipeline
+  - edit & delete records
