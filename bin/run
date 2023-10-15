@@ -39,4 +39,4 @@ if [ $dev = true ] && [ $prod = true ]; then
 fi
 
 docker build ./ -t "the_cache:$tag"
-docker run -p 9090:8080 -e APP_ENV=$env -v /home/mr_bowtie/Programming/ruby/cache_site/:/sinatra the_cache:$tag
+docker run -it -p 9090:8080 -e APP_ENV=$env -v /home/mr_bowtie/Programming/ruby/cache_site/:/sinatra the_cache:$tag

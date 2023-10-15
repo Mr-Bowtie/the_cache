@@ -7,4 +7,5 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 group :development, :test do
   gem 'solargraph'
+  gem 'pry'
 end
