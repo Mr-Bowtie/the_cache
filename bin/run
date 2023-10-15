@@ -1,0 +1,42 @@
+#! /bin/sh
+
+usage() {
+	echo "Usage: $0 -d -t -p"
+	echo "  -d: development env"
+	echo "  -t: testing mode"
+	echo "  -p: production env"
+	echo "  -d and -p cannot both be set, an error will be thrown"
+}
+
+dev=false
+prod=false
+tag="latest"
+env=""
+
+while getopts ":dtp" opt; do
+	case "$opt" in
+	d)
+    dev=true
+		env="development"
+		;;
+	t)
+		tag="testing"
+		;;
+	p)
+    prod=true
+    env="production"
+		;;
+	\?)
+		echo "invalid flag"
+		usage
+		;;
+	esac
+done
+
+if [ $dev = true ] && [ $prod = true ]; then
+	echo "Error: only one env may be set. choose either dev or production"
+	exit 1
+fi
+
+docker build ./ -t "the_cache:$tag"
+docker run -p 9090:8080 -e APP_ENV=$env the_cache:$tag
