@@ -1,2 +1,9 @@
-<h1 class="title is-1"><%= @title.sub('.txt', '') %></h1>
+<div class="level">
+  <div class="level-left">
+    <h1 class="title is-1"><%= @title.sub('.txt', '') %></h1>
+  </div>
+  <div class="level-right">
+    <a href="/edit_record/<%= @type %>/<%= @title %>" class="button is-primary">Edit</a>
+  </div>
+</div>
 <p><%= @content %></p>

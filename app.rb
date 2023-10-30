@@ -3,6 +3,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'dotenv/load'
+require 'pry'
 Dotenv.load('.env')
 
 get '/' do
@@ -15,6 +16,7 @@ get '/npcs' do
 end
 
 get '/npcs/:title' do
+  @type = 'npcs'
   @content = File.read("./records/npcs/#{params[:title]}")
   @title = params[:title]
   erb :show_content
@@ -26,6 +28,7 @@ get '/adventure_logs' do
 end
 
 get '/adventure_logs/:title' do
+  @type = 'adventure_logs'
   @content = File.read("./records/adventure_logs/#{params[:title]}")
   @title = params[:title]
   erb :show_content
@@ -37,16 +40,36 @@ get '/locations' do
 end
 
 get '/locations/:title' do
+  @type = 'locations'
   @content = File.read("./records/locations/#{params[:title]}")
   @title = params[:title]
   erb :show_content
 end
 
-get '/rich_text_form' do
-  erb :rich_text_form
+get '/new_record' do
+  erb :new_record
+end
+
+get '/edit_record/:type/:title' do
+  @type = params[:type]
+  @content = File.read("./records/#{params[:type]}/#{params[:title]}")
+  @title = params[:title]
+  erb :edit_record
 end
 
 post '/create_file' do
+  file_path = "./records/#{params[:type]}/#{params[:title]}.txt"
+  File.open(file_path, 'w') do |file|
+    file.write(params[:content])
+  end
+  redirect "/#{params[:type]}"
+end
+
+post '/edit_file' do 
+  unless (params[:old_title] == params[:title]) 
+    File.rename("./records/#{params[:type]}/#{params[:old_title]}.txt", "./records/#{params[:type]}/#{params[:title]}.txt")
+  end
+
   file_path = "./records/#{params[:type]}/#{params[:title]}.txt"
   File.open(file_path, 'w') do |file|
     file.write(params[:content])

@@ -1,25 +1,27 @@
-<form action="/create_file" method="post">
+<form action="/edit_file" method="post">
+  <input type="hidden" name="old_title" value="<%= @title.sub('.txt', '') %>">
   <div class="field">
     <label class="label" for="type">Entry Type</label>
     <div class="control select is-medium">
-      <select name="type" id="type-select">
+      <select name="type" id="type-select" =>
         <option value="">--Choose the entry type--</option>
-        <option value="adventure_logs">adventure log</option>
-        <option value="npcs">npc</option>
-        <option value="locations">location</option>
+        <% ['adventure_logs', 'npcs', 'locations'].each do |record| %>
+          <option value="<%= record %>" <%= 'selected' if record == @type %>><%= record %></option>
+        <% end %>
       </select>
     </div>
   </div>
   <div class="field">
     <label class="label" for="title">Title</label>
     <div class="control">
-      <input class="input is-medium" type="text" name="title">
+      <input class="input is-medium" type="text" name="title" value="<%= @title.sub('.txt', '') %>">
     </div>
   </div>
   <div class="field">
     <label class="label" for="content">Content</label>
     <div class="control">
       <textarea id="editor" name="content">
+        <%= @content %>
       </textarea>
     </div>
   </div>
