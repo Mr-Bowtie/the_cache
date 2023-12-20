@@ -17,9 +17,9 @@
   - *NOTE* this app uses no database, rather just reads and writes text files to the server disk
 
 ## Roadmap
-  [] image uploads
-  [] automatic file backups
-  [] cooler design
-  [] form validations
-  [] GHA CI auto-deploy pipeline
-  [x] edit & delete records
+- [ ] image uploads
+- [ ] automatic file backups
+- [ ] cooler design
+- [ ] form validations
+- [ ] GHA CI auto-deploy pipeline
+- [x] edit & delete records
