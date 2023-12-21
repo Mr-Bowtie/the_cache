@@ -6,6 +6,12 @@ require 'dotenv/load'
 require 'pry'
 Dotenv.load('.env')
 
+# Create records directories if they doesn't exist
+Dir.mkdir('./records') unless Dir.exist?('./records')
+Dir.mkdir('./records/npcs') unless Dir.exist?('./records/npcs')
+Dir.mkdir('./records/adventure_logs') unless Dir.exist?('./records/adventure_logs')
+Dir.mkdir('./records/locations') unless Dir.exist?('./records/locations')
+
 get '/' do
   erb :index
 end
