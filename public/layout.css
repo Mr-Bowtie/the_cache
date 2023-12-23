@@ -1,0 +1,52 @@
+html {
+  background-color: #f5f5f5;
+}
+#cache-title {
+  font-family: "Inknut Antiqua", serif;
+  color: black;
+  font-size: 2em;
+}
+
+.cache-logo {
+  width: 75px;
+  height: auto;
+}
+
+.laxus-image {
+  width: 650px;
+  border-radius: 10px;
+  object-fit: contain;
+  object-view-box: inset(55% 44% 29% 47%);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+    font-family: "Inknut Antiqua", serif;
+    width: 100%;
+  }
+}
