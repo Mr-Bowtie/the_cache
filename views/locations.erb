@@ -6,7 +6,7 @@
 
 <ul>
   <% @locations.each do |log| %>
-    <li><a href="/locations/<%= log %>"><%= log.sub('.txt', '') %></a></li>
+    <li class="has-text-centered"><a href="/locations/<%= log %>"><%= log.sub('.txt', '') %></a></li>
   <% end %>
 </ul>
 
