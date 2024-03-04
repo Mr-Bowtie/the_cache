@@ -1,0 +1,2 @@
+x 2024-03-04 fix textbox width @bug
+x 2024-03-04 fix text to keep formatting from TinyMCE @bug
