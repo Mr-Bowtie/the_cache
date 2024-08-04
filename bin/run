@@ -11,20 +11,19 @@ usage() {
 dev=false
 prod=false
 tag="latest"
-env=""
+env="development"
 
 while getopts ":dtp" opt; do
 	case "$opt" in
 	d)
-    dev=true
-		env="development"
+		dev=true
 		;;
 	t)
 		tag="testing"
 		;;
 	p)
-    prod=true
-    env="production"
+		prod=true
+		env="production"
 		;;
 	\?)
 		echo "invalid flag"
@@ -39,4 +38,4 @@ if [ $dev = true ] && [ $prod = true ]; then
 fi
 
 docker build ./ -t "the_cache:$tag"
-docker run -it -p 9090:8080 -e APP_ENV=$env -v $(dirname $(pwd))/cache_site/:/sinatra the_cache:$tag
+docker run -it -p 9999:8080 -e APP_ENV=$env -v $(dirname $(pwd))/cache_site/:/sinatra the_cache:$tag

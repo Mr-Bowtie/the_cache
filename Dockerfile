@@ -12,4 +12,6 @@ RUN bundle install
 
 COPY . .
 
+RUN bundle exec rake db:migrate
+
 CMD ["rackup", "--host", "0.0.0.0", "--port", "8080"]
