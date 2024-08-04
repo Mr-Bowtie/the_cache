@@ -5,6 +5,7 @@ require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require 'dotenv/load'
 require 'pry'
+Dir[File.join(__dir__, 'models', '*.rb')].each { |file| require file }
 Dotenv.load('.env')
 
 set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
