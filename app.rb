@@ -2,10 +2,12 @@
 
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'sinatra/activerecord'
 require 'dotenv/load'
 require 'pry'
 Dotenv.load('.env')
 
+set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
 # Create records directories if they doesn't exist
 Dir.mkdir('./records') unless Dir.exist?('./records')
 Dir.mkdir('./records/npcs') unless Dir.exist?('./records/npcs')
