@@ -1,0 +1,35 @@
+<% if errors %>
+  <h2>Errors</h2>
+  <% errors.each do |err| %>
+    <p><%= err.attribute %>: <%= err.message %></p>
+  <% end %>
+<% end %>
+<form action="/adventure_logs/create" method="post">
+  <div class="field">
+  </div>
+  <div class="field">
+    <label class="label" for="title">Title</label>
+    <div class="control">
+      <input class="input is-medium" type="text" name="title">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="date">Date</label>
+    <div class="control">
+      <input class="input" type="date" name="date">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="content">Content</label>
+    <div class="control">
+      <textarea id="editor" name="content">
+      </textarea>
+    </div>
+  </div>
+  <input class="button mt-3" type="submit" value="Save">
+</form>
+<script>
+  tinymce.init({
+    selector: '#editor'
+  });
+</script>
