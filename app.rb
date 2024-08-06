@@ -58,11 +58,7 @@ end
 patch '/adventure_logs/:id' do
   @adventure_log = AdventureLog.find(params[:id])
 
-  if @adventure_log.update(
-    title: params[:title],
-    date: params[:date],
-    content: params[:content]
-  )
+  if @adventure_log.update(adventure_log_params)
     redirect "/adventure_logs/#{@adventure_log.id}"
   else
     erb :'adventure_logs/edit', locals: { errors: @adventure_log.errors }
@@ -71,17 +67,22 @@ end
 
 post '/adventure_logs/create' do
   # define exactly what param elements we want to use to prevent any other value being set by users
-  @adventure_log = AdventureLog.new(
-    title: params[:title],
-    date: params[:date],
-    content: params[:content]
-  )
+  @adventure_log = AdventureLog.new(adventure_log_params)
 
   if @adventure_log.save
     redirect "/adventure_logs/#{@adventure_log.id}"
   else
     erb :'adventure_logs/new', locals: { errors: @adventure_log.errors }
   end
+end
+
+def adventure_log_params
+  {
+    title: params[:title],
+    date: params[:date],
+    session_number: params[:session_number],
+    content: params[:content]
+  }
 end
 
 get '/locations' do
