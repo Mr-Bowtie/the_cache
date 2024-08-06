@@ -46,9 +46,27 @@ get '/adventure_logs/new' do
   erb :'adventure_logs/new', locals: { errors: nil }
 end
 
+get '/adventure_logs/:id/edit' do
+  @adventure_log = AdventureLog.find(params[:id])
+  erb :'adventure_logs/edit', locals: { errors: nil }
+end
 get '/adventure_logs/:id' do
   @adventure_log = AdventureLog.find(params[:id])
   erb :'adventure_logs/show'
+end
+
+patch '/adventure_logs/:id' do
+  @adventure_log = AdventureLog.find(params[:id])
+
+  if @adventure_log.update(
+    title: params[:title],
+    date: params[:date],
+    content: params[:content]
+  )
+    redirect "/adventure_logs/#{@adventure_log.id}"
+  else
+    erb :'adventure_logs/edit', locals: { errors: @adventure_log.errors }
+  end
 end
 
 post '/adventure_logs/create' do
