@@ -42,7 +42,6 @@ get '/adventure_logs' do
 end
 
 get '/adventure_logs/new' do
-  binding.pry
   erb :'adventure_logs/new', locals: { errors: nil }
 end
 
@@ -50,6 +49,7 @@ get '/adventure_logs/:id/edit' do
   @adventure_log = AdventureLog.find(params[:id])
   erb :'adventure_logs/edit', locals: { errors: nil }
 end
+
 get '/adventure_logs/:id' do
   @adventure_log = AdventureLog.find(params[:id])
   erb :'adventure_logs/show'
@@ -77,20 +77,11 @@ post '/adventure_logs/create' do
     content: params[:content]
   )
 
-  # TODO: handle save failure
   if @adventure_log.save
     redirect "/adventure_logs/#{@adventure_log.id}"
-
   else
     erb :'adventure_logs/new', locals: { errors: @adventure_log.errors }
   end
-end
-
-get '/adventure_logs/:title' do
-  @type = 'adventure_logs'
-  @content = File.read("./records/adventure_logs/#{params[:title]}")
-  @title = params[:title]
-  erb :show_content
 end
 
 get '/locations' do
