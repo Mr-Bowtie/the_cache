@@ -1,3 +1,13 @@
-<h1 class="title is-1"><%= @adventure_log.title %></h1>
-<h2 class="subtitle is-2">Date: <%= @adventure_log.date %></h2>
+<div class="level mt-4 is-align-items-center">
+  <h1 class="title is-1 mb-0"><%= @adventure_log.title %></h1>
+  <a class="button" href="/adventure_logs/<%= @adventure_log.id %>/edit">Edit</a>
+</div>
+<div class="level is-align-items-center">
+  <h2 class="subtitle is-2">Date:
+    <%= @adventure_log.date.strftime("%Y-%m-%d") %></h2>
+  <% if @adventure_log.session_number %>
+    <h2>Session:
+      <%= @adventure_log.session_number %></h2>
+  <% end %>
+</div>
 <p><%= @adventure_log.content %></p>

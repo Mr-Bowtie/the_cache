@@ -1,0 +1,41 @@
+<% if errors %>
+  <h2>Errors</h2>
+  <% errors.each do |err| %>
+    <p><%= err.attribute %>: <%= err.message %></p>
+  <% end %>
+<% end %>
+<form action="/adventure_logs/<%= @adventure_log.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="field">
+    <label class="label" for="title">Title</label>
+    <div class="control">
+      <input class="input is-medium" type="text" name="title" value="<%= @adventure_log.title %>">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="date">Date</label>
+    <div class="control">
+      <input class="input" type="date" name="date" value="<%= @adventure_log.date.strftime("%Y-%m-%d") %>">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="session_number">Session Number</label>
+    <div>
+      <input class="input" type="text" name="session_number" value="<%= @adventure_log.session_number %>">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="content">Content</label>
+    <div class="control">
+      <textarea id="editor" name="content">
+        <%= @adventure_log.content %>
+      </textarea>
+    </div>
+  </div>
+  <input class="button mt-3" type="submit" value="Save">
+</form>
+<script>
+  tinymce.init({
+    selector: '#editor'
+  });
+</script>
