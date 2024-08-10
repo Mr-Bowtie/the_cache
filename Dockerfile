@@ -4,7 +4,7 @@ FROM ruby:$RUBY_VERSION-slim as base
 WORKDIR /sinatra
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential
+  apt-get install --no-install-recommends -y build-essential
 
 COPY Gemfile Gemfile.lock ./
 
