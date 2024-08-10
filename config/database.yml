@@ -7,7 +7,7 @@ development:
 
 test:
   <<: *default
-  database: the_cache_test
+  database: db/the_cache_test.sqlite3
 
 production:
   <<: *default
