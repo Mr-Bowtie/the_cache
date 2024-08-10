@@ -1,0 +1,14 @@
+default: &default
+  adapter: sqlite3
+
+development:
+  <<: *default
+  database: db/the_cache_development.sqlite3
+
+test:
+  <<: *default
+  database: the_cache_test
+
+production:
+  <<: *default
+  database: db/the_cache_production.sqlite3
