@@ -9,8 +9,6 @@ Dir[File.join(__dir__, 'models', '*.rb')].each { |file| require file }
 
 Dotenv.load('.env')
 
-set :database, { adapter: 'sqlite3', database: 'db/development.sqlite3' }
-
 # Create records directories if they doesn't exist
 Dir.mkdir('./records') unless Dir.exist?('./records')
 Dir.mkdir('./records/npcs') unless Dir.exist?('./records/npcs')
@@ -20,6 +18,8 @@ Dir.mkdir('./records/locations') unless Dir.exist?('./records/locations')
 get '/' do
   erb :index
 end
+
+# ========== NPCs ==========
 
 get '/npcs' do
   @npcs = Dir.entries('./records/npcs').reject { |f| File.directory? f }
@@ -33,6 +33,8 @@ get '/npcs/:title' do
   erb :show_content
 end
 
+# ========== Adventure Logs ==========
+
 get '/adventure_logs' do
   # @adventure_logs = Dir.entries('./records/adventure_logs').reject { |f| File.directory? f }
   # erb :adventure_logs
@@ -41,28 +43,13 @@ get '/adventure_logs' do
   erb :adventure_logs
 end
 
-get '/adventure_logs/new' do
-  erb :'adventure_logs/new', locals: { errors: nil }
-end
-
-get '/adventure_logs/:id/edit' do
-  @adventure_log = AdventureLog.find(params[:id])
-  erb :'adventure_logs/edit', locals: { errors: nil }
-end
-
 get '/adventure_logs/:id' do
   @adventure_log = AdventureLog.find(params[:id])
   erb :'adventure_logs/show'
 end
 
-patch '/adventure_logs/:id' do
-  @adventure_log = AdventureLog.find(params[:id])
-
-  if @adventure_log.update(adventure_log_params)
-    redirect "/adventure_logs/#{@adventure_log.id}"
-  else
-    erb :'adventure_logs/edit', locals: { errors: @adventure_log.errors }
-  end
+get '/adventure_logs/new' do
+  erb :'adventure_logs/new', locals: { errors: nil }
 end
 
 post '/adventure_logs/create' do
@@ -76,6 +63,21 @@ post '/adventure_logs/create' do
   end
 end
 
+get '/adventure_logs/:id/edit' do
+  @adventure_log = AdventureLog.find(params[:id])
+  erb :'adventure_logs/edit', locals: { errors: nil }
+end
+
+patch '/adventure_logs/:id' do
+  @adventure_log = AdventureLog.find(params[:id])
+
+  if @adventure_log.update(adventure_log_params)
+    redirect "/adventure_logs/#{@adventure_log.id}"
+  else
+    erb :'adventure_logs/edit', locals: { errors: @adventure_log.errors }
+  end
+end
+
 def adventure_log_params
   {
     title: params[:title],
@@ -84,6 +86,8 @@ def adventure_log_params
     content: params[:content]
   }
 end
+
+# ========== Locations ==========
 
 get '/locations' do
   @locations = Dir.entries('./records/locations').reject { |f| File.directory? f }
@@ -96,6 +100,8 @@ get '/locations/:title' do
   @title = params[:title]
   erb :show_content
 end
+
+# =============== old file manip methods ===============
 
 get '/new_record' do
   erb :new_record
